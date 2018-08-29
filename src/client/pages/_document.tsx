@@ -8,6 +8,8 @@
 import { ServerStyleSheet } from 'styled-components';
 import Document, { Head, Main, NextScript } from 'next/document';
 
+import { FontHeadLink } from '../components/Font';
+
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
@@ -21,6 +23,7 @@ export default class MyDocument extends Document {
       <html lang="en">
         <Head>
           {this.props.styleTags}
+          <FontHeadLink />
         </Head>
         <body>
           <Main />
