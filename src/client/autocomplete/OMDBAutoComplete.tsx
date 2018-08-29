@@ -93,9 +93,10 @@ class OMDBAutoComplete extends Component<Props, State> {
 
     return (
       <AutoComplete>
-        <Input {...props}
+        <Input
           type="text"
           value={inputValue}
+          {...props}
           onChange={this.onChange}
         />
         <AutoCompleteList>

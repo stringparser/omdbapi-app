@@ -67,9 +67,9 @@ class CreateMovieForm extends Component<{}, State> {
         <OMDBAutoComplete
           name="title"
           label="Title"
+          value={values.title}
           required={true}
           placeholder="Search a movie title"
-          defaultValue={values.title}
           onSelectItem={this.onSelectTitle}
         />
 
