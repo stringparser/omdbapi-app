@@ -2,7 +2,7 @@ import { Server } from 'next';
 import * as Router from 'koa-router';
 
 import { getMoviesByTitle, getMovieByID } from './api/OMDBAPIClient';
-import { getMovieByIdRoute, getMoviesByTitleRoute } from '../client/api/routes';
+import { getMovieByIdRoute, getMoviesByTitleRoute, putMovieRoute } from '../client/api/routes';
 
 export function createRouter(app: Server) {
   const router = new Router();
@@ -14,14 +14,16 @@ export function createRouter(app: Server) {
     ctx.status = res.status;
   });
 
-  console.log('getMoviesByTitleRoute()', getMoviesByTitleRoute());
-
   router.get(getMoviesByTitleRoute(), async ctx => {
-    console.log(ctx.query.q);
     const res = await getMoviesByTitle(ctx.query.q);
     ctx.body = res.body || null;
     ctx.status = res.status;
   });
+
+  router.put(putMovieRoute(), async ctx => {
+    ctx.body = 'ok';
+    ctx.status = 200;
+  })
 
   /**
    * Generic request handler for next used to:

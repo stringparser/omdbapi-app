@@ -1,5 +1,5 @@
 import { OMDBSearchResponseBody, OMDBItemByID } from '../../types/OIMDBAPI';
-import { getMovieByIdRoute, getMoviesByTitleRoute } from './routes';
+import { getMovieByIdRoute, getMoviesByTitleRoute, putMovieRoute } from './routes';
 
 import MovieItem from '../models/MovieItem';
 
@@ -50,5 +50,18 @@ export async function getMoviesByTitle(query: string): Promise<SearchResponse> {
     return { res, body };
   } catch(error) {
     return { res, error };
+  }
+}
+
+export async function putMovie(movieItem: MovieItem) {
+  try {
+    const res = await fetch(putMovieRoute(), {
+      method: 'PUT',
+      body: JSON.stringify(movieItem),
+    });
+    const body = await res.json();
+    return { res, body };
+  } catch(error) {
+    return { error };
   }
 }

@@ -7,8 +7,10 @@ import Button from '../../button/Button';
 import MovieItem from '../../models/MovieItem';
 import FlexLayout from '../layout/FlexLayout';
 import OMDBAutoComplete from '../../autocomplete/OMDBAutoComplete';
+import { putMovie } from '../../api/OMDBService';
 
 type State = {
+  error?: Error;
   values: MovieItem;
 };
 
@@ -35,8 +37,12 @@ class CreateMovieForm extends Component<{}, State> {
     const isValid = formEl.checkValidity();
 
     if (isValid) {
-      const formData = camelCaseKeys(formDataToObject(formEl, { hash: true }));
-      console.log(isValid, formData);
+      const formData: MovieItem = camelCaseKeys(formDataToObject(formEl, { hash: true }));
+
+      putMovie(formData)
+        .then(() => this.setState({ values: new MovieItem() }))
+        .catch((error) => this.setState({ error }));
+
     }
   }
 
