@@ -6,10 +6,9 @@
       "es7"
     ],
     "jsx": "preserve",
-    "module": "esnext",
-    "target": "esnext",
+    "module": "commonjs",
+    "target": "es6",
     "baseUrl": "src",
-    "allowJs": true,
     "sourceMap": true,
     "skipLibCheck": true,
     "importHelpers": true,
@@ -18,6 +17,7 @@
     "moduleResolution": "node",
     "preserveConstEnums": true,
     "noUnusedParameters": true,
+    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true
   }
 }

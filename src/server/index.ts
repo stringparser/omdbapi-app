@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { NODE_ENV, NODE_PORT } from '../../config/env';
+import { NODE_ENV, NODE_PORT } from './env';
 
 import * as Koa from 'koa';
 import * as next from 'next';
