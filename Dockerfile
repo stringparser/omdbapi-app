@@ -1,7 +1,16 @@
 FROM node:8.11.1
-WORKDIR /usr/src/app
-RUN npm i
+WORKDIR /usr/app
+
+ARG OIMDBAPI_KEY
+
 COPY . .
-EXPOSE 8080
+COPY .babelrc.js ./
+RUN ls -la .
+RUN npm install
+COPY . .
+
 ENV NODE_PORT 8080
-CMD [ "npm", "dev" ]
+ENV OIMDBAPI_KEY=$OIMDBAPI_KEY
+EXPOSE 8080
+
+CMD [ "npm", "run", "dev" ]
